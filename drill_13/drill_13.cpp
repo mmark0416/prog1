@@ -25,7 +25,34 @@ int main(){
     }
 
 
-
-	win.attach(grid);
+win.attach(grid);
 	win.wait_for_button();
+
+    Vector_ref<Rectangle> rectangles;
+    for(int i=0; i < x_size; i += x_grid){
+        rectangles.push_back(new Rectangle{Point{i,i},Point{i+x_grid,i+x_grid}});
+        rectangles[i/100].set_fill_color(Color::red);
+        win.attach(rectangles[i/100]);
+    }
+
+    win.wait_for_button();
+
+    Image image_1{Point{100,500}, "pictures/why.jpg"};
+    Image image_2{Point{300,0}, "pictures/why.jpg"};
+    Image image_3{Point{600,300}, "pictures/why.jpg"};
+
+    win.attach(image_1);
+    win.attach(image_2);
+    win.attach(image_3);
+
+    win.wait_for_button();
+    Image image_4{Point{0,0},"pictures/kozlegeny"};
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            
+        }
+    }
+    
+    win.wait_for_button();
+
 }
