@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <string>
 //1. feladat-------
 class B1{
 public:
@@ -26,13 +26,16 @@ public:
 };
 class D21 : public B2{
 public:
-    string s = "valami";
+    std::string s = "valami";
     void pvf() override {std::cout << s << "\n";}
 };
 class D22 : public B2{
-    int sz = 11;
-    void pvf() override
+    int i = 11;
+    void pvf() override {std::cout << i << "\n";}
 };
+void f(B2& b2){
+    b2.pvf();
+}
 int main(){
     
     //1.feladat--------
@@ -56,5 +59,11 @@ int main(){
     d2.f();
     d2.vf();
     d2.pvf();
+    //7. feladat--------
+    std::cout << "----7 feladat:----\n";
+    D21 d21;
+    D22 d22;
+    f(d21);
+    f(d22);
     return 0;
 }
