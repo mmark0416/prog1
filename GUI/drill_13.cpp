@@ -1,57 +1,103 @@
-#include "Simple_window.h"
-#include "Graph.h"
+#include <iostream>
 #include <vector>
+#include <string>
+#include <stdexcept>
 
-/*
-g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp drill_13.cpp `fltk-config --ldflags --use-images` -o a.out
-*/
+using namespace std;
 
-int main(){
-    using namespace Graph_lib;
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 
-	Point tl{ 100, 100 };
+void error(string s)
+{
+    throw runtime_error(s);
+}
 
-    int xmax = 800;
-    int ymax = 1000;
-	Simple_window win {tl, xmax, ymax, "grid-image drill" };
+void error(string s1, string s2)
+{
+    throw runtime_error(s1 + s2);
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 
-	int x_size = 800;
-	int y_size = 800;
-	int x_grid = 100;
-	int y_grid = 100;
-    Lines grid;
+struct Person {
+    Person() { }
+    Person(string ff, string ll, int aa);
 
-	for(int x = x_grid; x<x_size;x+=x_grid){
-        grid.add(Point{x,0},Point{x,y_size});
-	}
+    string first_name() const { return first; }
+    string last_name() const { return last; }
+    int age() const { return a; }
 
-    for(int y = y_grid; y<=y_size; y += y_grid){
-        grid.add(Point{0,y}, Point{x_size,y});
+private:
+    string first;
+    string last;
+    int a;
+};
+
+Person::Person(string ff, string ll, int aa)
+    : first{ff}, last{ll}, a{aa}
+{
+    if (aa < 0 || 150 < aa) error("Person(): invalid age");
+    
+    string nn = ff + ll;        // check both names at once
+    for (char c : nn) {
+        switch(c) {
+            case ';': case ':': case '"': case '[': case ']': case '*':
+            case '&': case '^': case '%': case '$': case '#': case '@':
+            case '!':
+                error("Person(): bad char in names");
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+ostream& operator<<(ostream& os, const Person& p)
+{
+    return os << p.first_name() << ' '
+              << p.last_name() << '\t'
+              << p.age();
+}
+
+istream& operator>>(istream& is, Person& p)
+{
+    string f;
+    string l;
+    int a;
+
+    is >> f >> l >> a;
+    if (!is) error("Unable to read into Person");
+
+    p = Person(f, l, a);
+
+    return is;
+}
+
+int main()
+try {
+    // Chapter 15 Drill
+    // Class definition drill
+
+    vector<Person> vp;
+
+    cout << "Enter some names and ages. Terminate with name 'end'\n";
+
+    for (Person p; cin >> p; ) {
+        if (p.first_name() == "end") break;
+        vp.push_back(p);
     }
 
-
-    win.attach(grid);
-	win.wait_for_button();
-
-    Vector_ref<Rectangle> rectangles;
-    for(int i=0; i < x_size; i += x_grid){
-        rectangles.push_back(new Rectangle{Point{i,i},Point{i+x_grid,i+x_grid}});
-        rectangles[i/100].set_fill_color(Color::red);
-        win.attach(rectangles[i/100]);
-    }
-
-    win.wait_for_button();
-
-    Image image_1{Point{100,500}, "pictures/why.jpg"};
-    Image image_2{Point{300,0}, "pictures/why.jpg"};
-    Image image_3{Point{600,300}, "pictures/why.jpg"};
-
-    win.attach(image_1);
-    win.attach(image_2);
-    win.attach(image_3);
-
-    win.wait_for_button();
-
-
+    for (Person p : vp)
+        cout << p << '\n';
 
 }
+catch (std::exception& e) {
+    std::cerr << "Exception: " << e.what() << '\n';
+    return 1;
+}
+catch (...) {
+    std::cerr << "Unknown error!\n";
+    return 2;
+}
+/* Compile command
+g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp ch15_drill.cpp `fltk-config --ldflags --use-images` -o a.out
+*/
