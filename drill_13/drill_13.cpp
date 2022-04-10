@@ -2,7 +2,7 @@
 #include "Graph.h"
 
 /*
-g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp drill_13.cpp `fltk-config --ldflags --use-images` -o a.out
+g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp drill_13.cpp `fltk-config --ldflags --use-images` -o drill_13.out
 */
 
 int main(){
