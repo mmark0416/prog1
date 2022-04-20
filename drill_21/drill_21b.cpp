@@ -59,11 +59,7 @@ try{
     int total = std::accumulate(msi.begin(),msi.end(),0,
                 [](int sum, const std::pair<std::string, int>& p)
                 {return sum += p.second;});
-/*     total = 0;
-    for(const auto& v: msi){
-        total += v.second;
-    }
-*/
+
     std::cout << "8. Msi int value sum:\n" << total << '\n';
 
     //----------9-10. feladat-----------

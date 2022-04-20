@@ -40,13 +40,6 @@ try{
     //-----------5. feladat------------
     double sumd = std::accumulate(vd.begin(),vd.end(),0.0);
     std::cout << "Sum of dv:\n\t" << sumd << '\n';
-/*    sumd = 0;
-    sumi = 0;
-    for(int i=0; i<vd.size(); i++){
-        sumd += vd[i];
-        sumi += vi[i];
-    }
-*/
 
     //-----------6. feladat------------
     double diff_sum =

@@ -83,16 +83,8 @@ int main(){
     lis = std::find(lis10_1.begin(),lis10_1.end(),12);
     if (lis != lis10_1.end()){
         std::cout << "In list found at: " << std::distance(lis10_1.begin(), lis) << '\n';
-        /*
-        int x=0;
-        for(int i: lis10_1){
-            if(i == *lis){
-                std::cout << "In list found at: " << x << '\n';
-            }
-            x++;
-        }
-        */
     }
     else
         std::cout << "In list not found..\n";
+    return 0;
 }
