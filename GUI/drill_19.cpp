@@ -4,13 +4,13 @@
 
 template<typename T>
 struct S {
-    S(T vv = 0): val(vv) {}
+    S<T>(T vv = 0): val(vv) {}
 
     T& get();
     const T& get() const;
     void set(T x) { val = x; };
 
-    S& operator=(const T&);
+    S<T>& operator=(const T& s);
 private:
     T val;
 };
@@ -122,7 +122,7 @@ int main(){
               << "S<double>: " << db2.get() << '\n'
               << "S<string>: " << st2.get() << '\n';
 
-    std::cout << "Read vector<int>: {val1, val2, val3}";
+    std::cout << "Read vector<int>: {val1, val2, val3} ";
     std::vector<int> vv;
     read_val(vv);
     S<std::vector<int>> ve2 {vv};

@@ -79,7 +79,7 @@ try{
 
     //-----------2. feladat-----------
     std::sort(vi.begin(), vi.end(), 
-            [](const Item& a, const Item& b) {return a.name < b.name; });
+            [](const Item& a, const Item& b) { return a.name < b.name; });
     print(vi, "2. Vector sort name:");
 
     //-----------3. feladat-----------

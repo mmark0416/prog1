@@ -36,6 +36,8 @@ int main(){
         p2[i] = p1[i];
     }
     print_array(std::cout, p2, 10);
+    delete[] p1;
+    delete[] p2;
 
     std::vector<int> v1 {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
     std::vector<int> v2(10);

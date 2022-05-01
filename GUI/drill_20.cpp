@@ -34,11 +34,11 @@ int main(){
 
     constexpr int size = 10;
 
-    int array10[10] {0,1,2,3,4,5,6,7,8,9};
-    std::vector<int> vec10(10);
+    int array10[size] {0,1,2,3,4,5,6,7,8,9};
+    std::vector<int> vec10(size);
     std::copy(array10, array10+size, vec10.begin());
 
-    std::list<int> lis10(10);
+    std::list<int> lis10(size);
     std::copy(array10, array10+size, lis10.begin());
 
     std::array<int, 10> array10_1;
@@ -49,7 +49,7 @@ int main(){
     std::copy(array10, array10+size, vec10_1.begin());
     print(vec10_1, "Vector:");
 
-    std::list<int> lis10_1(10);
+    std::list<int> lis10_1(size);
     std::copy(array10, array10+size, lis10_1.begin());
     print(lis10_1, "List:");
 

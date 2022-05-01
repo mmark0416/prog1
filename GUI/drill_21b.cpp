@@ -23,6 +23,7 @@ void read_to_msi(std::map<std::string,int>& ms){
     while(ms.size()<10){
         std::cout << '\t';
         std::cin >> b >> a;
+        //ms[b] = a;
         ms.insert(std::make_pair(b,a));
     }
 }
@@ -46,7 +47,7 @@ try{
 
     //----------4. feladat-----------
     msi.erase(msi.begin(),msi.end());
-    print(msi, "3. Erase the pairs from msi:");
+    print(msi, "4. Erase the pairs from msi:");
 
     //----------6. feladat-----------
     std::cout << "Read 10 string int pairs:\n"; 

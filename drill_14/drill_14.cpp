@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 //1. feladat-------
 class B1{
 public:
