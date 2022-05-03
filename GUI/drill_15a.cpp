@@ -49,8 +49,9 @@ int main(){
 
     //4-5.
     Function s2 {slope,-10,11,orig, 400, x_scale,y_scale};
-    Text ts2{Point{100,400},"x/2"};
+    Text ts2{Point{120,400},"x/2"};
     win.attach(s2);
+    win.attach(ts2);
     win.wait_for_button();
 
     //6.

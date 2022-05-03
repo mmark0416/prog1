@@ -1,11 +1,13 @@
 #include "Simple_window.h"
 #include "Graph.h"
+#include <vector>
 
 /*
 g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp drill_13.cpp `fltk-config --ldflags --use-images` -o drill_13.out
 */
 
 int main(){
+
     using namespace Graph_lib;
 
     //1. Make an 800-by-1000 Simple_window

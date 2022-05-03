@@ -5,16 +5,6 @@
 
 using namespace std;
 
-void error(string s)
-{
-    throw runtime_error(s);
-}
-
-void error(string s1, string s2)
-{
-    throw runtime_error(s1 + s2);
-}
-
 struct Person {
     Person() { }
     Person(string ff, string ll, int aa);
@@ -34,7 +24,7 @@ private:
 Person::Person(string ff, string ll, int aa)
     : first{ff}, last{ll}, age{aa}
 {
-    if (aa < 0 || 150 < aa) error("Person(): invalid age");
+    if (aa < 0 || 150 < aa) throw runtime_error("Person(): invalid age");
     
     string nn = ff + ll;       
     for (char c : nn) {
@@ -42,7 +32,7 @@ Person::Person(string ff, string ll, int aa)
             case ';': case ':': case '"': case '[': case ']': case '*':
             case '&': case '^': case '%': case '$': case '#': case '@':
             case '!':
-                error("Person(): bad char in names");
+                throw runtime_error("Person(): bad char in names");
                 break;
             default:
                 break;
@@ -68,7 +58,7 @@ istream& operator>>(istream& is, Person& p)
         p = Person(f);
     else
     is >> l >> a;
-    if (!is) error("Unable to read into Person");
+    if (!is) throw runtime_error("Unable to read into Person");
     p = Person(f, l, a);
 
     return is;
